@@ -1,6 +1,8 @@
-# Sistema de Acompanhamento de Bioimpedância
+# Fuxiqueira: Sistema de Acompanhamento de Bioimpedância
 
-Um sistema web responsivo para registro e acompanhamento de evolução física através de dados de balança de bioimpedância.
+**Por que "Fuxiqueira"?** Porque, assim como aquela vizinha fofoqueira, a balança de bioimpedância não guarda segredo de nada! Ela entrega sem dó todas as vezes que você exagerou na pizza e revela todos os seus segredos metabólicos, alimentares e de saúde. 🤫🤭
+
+Um sistema web responsivo para registro e acompanhamento de evolução física através de dados da nossa querida (e temida) balança fuxiqueira.
 
 ## 🚀 Funcionalidades
 
