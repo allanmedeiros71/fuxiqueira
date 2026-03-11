@@ -181,31 +181,20 @@ def get_interpretacoes(medicao):
 
 @login_required
 def editar_perfil(request):
+    from accounts.forms import UserProfileForm
+
     if request.method == "POST":
-        user = request.user
-        user.nome = request.POST.get("nome", user.nome)
-        user.email = request.POST.get("email", user.email)
-        user.data_nascimento = request.POST.get("data_nascimento", user.data_nascimento)
-
-        # Tratar altura - converter vírgula para ponto
-        altura_str = request.POST.get("altura", "").strip()
-        if altura_str:
-            # Substituir vírgula por ponto
-            altura_str = altura_str.replace(",", ".")
-            try:
-                user.altura = float(altura_str)
-            except ValueError:
-                messages.error(request, "Formato de altura inválido. Use ponto decimal (ex: 1.75)")
-                return render(request, "measurements/editar_perfil.html")
-
-        try:
-            user.save()
+        form = UserProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
             messages.success(request, "Perfil atualizado com sucesso!")
             return redirect("dashboard")
-        except Exception as e:
-            messages.error(request, f"Erro ao atualizar perfil: {e}")
+        else:
+            messages.error(request, "Por favor, corrija os erros abaixo.")
+    else:
+        form = UserProfileForm(instance=request.user)
 
-    return render(request, "measurements/editar_perfil.html")
+    return render(request, "measurements/editar_perfil.html", {"form": form})
 
 
 @login_required
