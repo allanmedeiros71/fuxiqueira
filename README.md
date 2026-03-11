@@ -4,12 +4,15 @@ Um sistema web responsivo para registro e acompanhamento de evolução física a
 
 ## 🚀 Funcionalidades
 
-- **Autenticação de Usuários**: Cadastro, login e logout
+- **Autenticação de Usuários**: Cadastro, login e logout com aprovação administrativa
+- **Sistema de Administração**: Interface completa para gerenciamento de usuários
 - **Registro de Medições**: Formulário otimizado para mobile com dados da balança
 - **Dashboard Interativo**: Visualização da última medição e comparativos
 - **Gráficos de Evolução**: Histórico visual com Chart.js
-- **Design Mobile-First**: Interface responsiva com TailwindCSS
+- **Design Mobile-First**: Interface responsiva com menu hambúrguer
 - **Interações com HTMX**: Atualizações parciais sem recarregar página
+- **Aprovação de Usuários**: Admin deve autorizar novos cadastros
+- **Menu Responsivo**: Navegação adaptativa para desktop e mobile
 
 ## 🛠️ Stack de Tecnologia
 
@@ -94,13 +97,15 @@ fuxiqueira/
 │   └── forms.py           # Forms de autenticação
 ├── measurements/          # App de medições
 │   ├── models.py          # Model Measurement
-│   ├── views.py           # Views de medições
-│   └── forms.py           # Forms de medições
+│   ├── views.py           # Views de medições e administração
+│   ├── forms.py           # Forms de medições
+│   └── urls.py            # URLs do app
 ├── templates/             # Templates HTML
-│   ├── base.html          # Template base
+│   ├── base.html          # Template base com menu responsivo
 │   ├── accounts/          # Templates de autenticação
-│   └── measurements/     # Templates de medições
+│   └── measurements/     # Templates de medições e admin
 ├── static/               # Arquivos estáticos
+│   └── css/              # Arquivos CSS customizados
 ├── media/                # Arquivos de mídia
 ├── Dockerfile            # Configuração do Docker
 ├── docker-compose.yml    # Orquestração dos containers
@@ -111,11 +116,22 @@ fuxiqueira/
 
 ## 🎯 Uso do Sistema
 
+### Para Usuários Comuns
+
 1. **Cadastro**: Crie sua conta com dados pessoais e altura
-2. **Login**: Acesse o sistema com email e senha
-3. **Adicionar Medição**: Registre os dados da sua balança de bioimpedância
-4. **Dashboard**: Visualize sua evolução com gráficos interativos
-5. **Histórico**: Consulte todas as medições anteriores
+2. **Aguardar Aprovação**: O administrador deve aprovar seu cadastro
+3. **Login**: Acesse o sistema com email e senha
+4. **Adicionar Medição**: Registre os dados da sua balança de bioimpedância
+5. **Dashboard**: Visualize sua evolução com gráficos interativos
+6. **Histórico**: Consulte todas as medições anteriores
+
+### Para Administradores
+
+1. **Acessar Administração**: Menu usuário → Administração
+2. **Aprovar Usuários**: Revise e aprove novos cadastros
+3. **Rejeitar Usuários**: Exclua cadastros indesejados
+4. **Visualizar Estatísticas**: Total de usuários, ativos e pendentes
+5. **Gerenciar Sistema**: Acesso completo a todas as funcionalidades
 
 ## 🔧 Configurações
 
@@ -158,9 +174,11 @@ docker-compose down -v
 
 O sistema foi desenvolvido com prioridade para dispositivos móveis:
 - Interface adaptativa com TailwindCSS
+- Menu hambúrguer responsivo para navegação mobile
 - Botões grandes e fáceis de tocar
 - Navegação otimizada para telas pequenas
 - Formulários simplificados para uso mobile
+- Design glassmorphism moderno
 
 ## 🔒 Segurança
 
@@ -168,6 +186,8 @@ O sistema foi desenvolvido com prioridade para dispositivos móveis:
 - Senhas com hash
 - Validação de inputs
 - Configurações seguras para produção
+- Aprovação administrativa de novos usuários
+- Controle de acesso baseado em papéis
 
 ## 📊 Features Técnicas
 
@@ -176,6 +196,30 @@ O sistema foi desenvolvido com prioridade para dispositivos móveis:
 - **PostgreSQL**: Banco de dados robusto
 - **Nginx**: Servidor web reverso
 - **Gunicorn**: Servidor WSGI para Django
+- **Menu Responsivo**: JavaScript puro para mobile/desktop
+- **Sistema de Admin**: Interface completa de gerenciamento
+
+## 🎨 Features Implementadas Recentemente
+
+### Sistema de Administração
+- ✅ Dashboard administrativo com estatísticas
+- ✅ Lista de usuários pendentes de aprovação
+- ✅ Aprovação/rejeição de usuários com confirmação
+- ✅ Interface exclusiva para administradores
+- ✅ Links de administração no menu usuário
+
+### Menu Responsivo
+- ✅ Botão hambúrguer funcional em telas < 768px
+- ✅ Menu mobile com todos os links de navegação
+- ✅ Menu usuário mobile com dropdown
+- ✅ Transição suave entre mobile e desktop
+- ✅ JavaScript puro sem dependências externas
+
+### Melhorias Visuais
+- ✅ Design glassmorphism em login/signup
+- ✅ CSS local para evitar warnings de CDN
+- ✅ Templates standalone para autenticação
+- ✅ Interface moderna e intuitiva
 
 ## 🤝 Contribuição
 
