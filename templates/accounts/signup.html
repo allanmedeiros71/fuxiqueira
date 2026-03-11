@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cadastro - Sistema de Bioimpedância{% endblock %}
+{% block content %}
+    <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-blue-100 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+            <div class="text-center">
+                <div class="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-green-600">
+                    <svg class="h-6 w-6 text-white"
+                         fill="none"
+                         stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
+                        </path>
+                    </svg>
+                </div>
+                <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Solicitar Cadastro</h2>
+                <p class="mt-2 text-sm text-gray-600">Preencha os dados para solicitar acesso ao sistema</p>
+                <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                    <p class="text-xs text-yellow-800">⚠️ Seu cadastro será analisado e aprovado por um administrador</p>
+                </div>
+            </div>
+            <div class="bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl p-8 border border-white/40">
+                <form method="post" class="space-y-4">
+                    {% csrf_token %}
+                    {% if messages %}
+                        <div class="space-y-2">
+                            {% for message in messages %}
+                                <div class="p-3 rounded-lg {% if message.tags == 'error' %}bg-red-50 text-red-800 border border-red-200{% else %}bg-green-50 text-green-800 border border-green-200{% endif %}">
+                                    <p class="text-sm">{{ message }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div>
+                        <label for="id_username"
+                               class="block text-sm font-medium text-gray-700 mb-2">Nome de Usuário *</label>
+                        <input id="id_username"
+                               name="username"
+                               type="text"
+                               required
+                               class="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white/80 backdrop-blur-sm placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
+                               placeholder="Escolha um nome de usuário">
+                    </div>
+                    <div>
+                        <label for="id_email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                        <input id="id_email"
+                               name="email"
+                               type="email"
+                               required
+                               class="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white/80 backdrop-blur-sm placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
+                               placeholder="seu@email.com">
+                    </div>
+                    <div>
+                        <label for="id_nome" class="block text-sm font-medium text-gray-700 mb-2">Nome Completo *</label>
+                        <input id="id_nome"
+                               name="nome"
+                               type="text"
+                               required
+                               class="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white/80 backdrop-blur-sm placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
+                               placeholder="Seu nome completo">
+                    </div>
+                    <div>
+                        <label for="id_data_nascimento"
+                               class="block text-sm font-medium text-gray-700 mb-2">Data de Nascimento *</label>
+                        <input id="id_data_nascimento"
+                               name="data_nascimento"
+                               type="date"
+                               required
+                               class="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white/80 backdrop-blur-sm placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200">
+                    </div>
+                    <div>
+                        <label for="id_altura" class="block text-sm font-medium text-gray-700 mb-2">Altura (m) *</label>
+                        <input id="id_altura"
+                               name="altura"
+                               type="text"
+                               required
+                               step="0.01"
+                               class="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white/80 backdrop-blur-sm placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
+                               placeholder="Ex: 1.75 ou 1,75">
+                        <p class="text-xs text-gray-500 mt-1">Use ponto ou vírgula decimal (1.75 ou 1,75)</p>
+                    </div>
+                    <div>
+                        <label for="id_password1"
+                               class="block text-sm font-medium text-gray-700 mb-2">Senha *</label>
+                        <input id="id_password1"
+                               name="password1"
+                               type="password"
+                               required
+                               class="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white/80 backdrop-blur-sm placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
+                               placeholder="Crie uma senha segura">
+                    </div>
+                    <div>
+                        <label for="id_password2"
+                               class="block text-sm font-medium text-gray-700 mb-2">Confirmar Senha *</label>
+                        <input id="id_password2"
+                               name="password2"
+                               type="password"
+                               required
+                               class="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white/80 backdrop-blur-sm placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
+                               placeholder="Confirme sua senha">
+                    </div>
+                    <div class="pt-4">
+                        <button type="submit"
+                                class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-200">
+                            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                                <svg class="h-5 w-5 text-green-200 group-hover:text-green-100"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                </svg>
+                            </span>
+                            Solicitar Cadastro
+                        </button>
+                    </div>
+                    <div class="text-center pt-4 border-t border-gray-200">
+                        <p class="text-sm text-gray-600">
+                            Já tem uma conta?
+                            <a href="{% url 'login' %}"
+                               class="font-medium text-blue-600 hover:text-blue-500 transition duration-200">
+                                Faça login
+                            </a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+// Converter vírgula para ponto no campo altura
+document.getElementById('id_altura').addEventListener('blur', function() {
+    let value = this.value;
+    if (value.includes(',')) {
+        value = value.replace(',', '.');
+        this.value = value;
+    }
+});
+
+// Validar formato antes do envio
+document.querySelector('form').addEventListener('submit', function(e) {
+    const alturaInput = document.getElementById('id_altura');
+    let value = alturaInput.value;
+    
+    // Converter vírgula para ponto se existir
+    if (value.includes(',')) {
+        value = value.replace(',', '.');
+        alturaInput.value = value;
+    }
+    
+    // Validar se é um número válido
+    const numValue = parseFloat(value);
+    if (isNaN(numValue) || numValue < 0.5 || numValue > 2.5) {
+        e.preventDefault();
+        alert('Altura deve ser um número entre 0.5 e 2.5 metros (ex: 1.75)');
+        alturaInput.focus();
+    }
+});
+    </script>
+{% endblock %}

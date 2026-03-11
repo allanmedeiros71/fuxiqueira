@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description"
+              content="Sistema de Acompanhamento de Bioimpedância - Cadastro">
+        <meta name="keywords" content="bioimpedância, cadastro, saúde, fitness">
+        <title>Cadastro - Sistema de Bioimpedância</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+        <style>
+        /* Estilos adicionais específicos do signup */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .signup-container {
+            background: linear-gradient(to bottom right, rgb(240 253 244), rgb(219 234 254));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1rem;
+        }
+        
+        .form-container {
+            max-width: 28rem;
+            width: 100%;
+        }
+        
+        .icon-container {
+            margin: 0 auto;
+            height: 3rem;
+            width: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background-color: rgb(22 163 74);
+        }
+        
+        .form-box {
+            background-color: rgb(255 255 255 / 0.9);
+            backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            padding: 2rem;
+            border: 1px solid rgb(255 255 255 / 0.4);
+        }
+        
+        .input-field {
+            appearance: none;
+            position: relative;
+            display: block;
+            width: 100%;
+            padding: 0.75rem 0.75rem;
+            border: 1px solid rgb(209 213 219);
+            background-color: rgb(255 255 255 / 0.8);
+            backdrop-filter: blur(4px);
+            color: rgb(17 24 39);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 150ms ease-in-out;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: transparent;
+            box-shadow: 0 0 0 3px rgb(34 197 94);
+        }
+        
+        .input-field::placeholder {
+            color: rgb(107 114 128);
+        }
+        
+        .submit-btn {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 0.75rem 1rem;
+            border: 1px solid transparent;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            color: white;
+            background-color: rgb(22 163 74);
+            cursor: pointer;
+            transition: all 150ms ease-in-out;
+        }
+        
+        .submit-btn:hover {
+            background-color: rgb(21 128 61);
+        }
+        
+        .submit-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgb(34 197 94), 0 0 0 6px rgb(34 197 94 / 0.1);
+        }
+        
+        .message {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .message.error {
+            background-color: rgb(254 242 242);
+            color: rgb(153 27 27);
+            border: 1px solid rgb(254 202 202);
+        }
+        
+        .message.success {
+            background-color: rgb(240 253 244);
+            color: rgb(22 101 52);
+            border: 1px solid rgb(187 247 208);
+        }
+        
+        .link {
+            color: rgb(37 99 235);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 150ms ease-in-out;
+        }
+        
+        .link:hover {
+            color: rgb(59 130 246);
+        }
+        
+        .warning-box {
+            padding: 0.75rem;
+            background-color: rgb(254 252 232);
+            border: 1px solid rgb(254 240 138);
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .warning-text {
+            font-size: 0.75rem;
+            color: rgb(146 64 14);
+        }
+        
+        .border-top {
+            border-top: 1px solid rgb(229 231 235);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="signup-container">
+            <div class="form-container">
+                <div class="text-center space-y-8">
+                    <div>
+                        <div class="icon-container">
+                            <svg style="height: 1.5rem;
+                                        width: 1.5rem;
+                                        color: white"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h2 style="margin-top: 1.5rem;
+                                   font-size: 1.875rem;
+                                   line-height: 2.25rem;
+                                   font-weight: 800;
+                                   color: rgb(17 24 39)">Solicitar Cadastro</h2>
+                        <p style="margin-top: 0.5rem;
+                                  font-size: 0.875rem;
+                                  line-height: 1.25rem;
+                                  color: rgb(75 85 99)">Preencha os dados para solicitar acesso ao sistema</p>
+                        <div class="warning-box">
+                            <p class="warning-text">⚠️ Seu cadastro será analisado e aprovado por um administrador</p>
+                        </div>
+                    </div>
+                    <div class="form-box">
+                        <form method="post"
+                              style="display: flex;
+                                     flex-direction: column;
+                                     gap: 1rem">
+                            {% csrf_token %}
+                            {% if messages %}
+                                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                    {% for message in messages %}
+                                        <div class="message {% if message.tags == 'error' %}error{% else %}success{% endif %}">{{ message }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div>
+                                <label for="id_username"
+                                       style="display: block;
+                                              font-size: 0.875rem;
+                                              font-weight: 500;
+                                              color: rgb(55 65 81);
+                                              margin-bottom: 0.5rem">Nome de Usuário *</label>
+                                <input id="id_username"
+                                       name="username"
+                                       type="text"
+                                       required
+                                       class="input-field"
+                                       placeholder="Escolha um nome de usuário">
+                            </div>
+                            <div>
+                                <label for="id_email"
+                                       style="display: block;
+                                              font-size: 0.875rem;
+                                              font-weight: 500;
+                                              color: rgb(55 65 81);
+                                              margin-bottom: 0.5rem">Email *</label>
+                                <input id="id_email"
+                                       name="email"
+                                       type="email"
+                                       required
+                                       class="input-field"
+                                       placeholder="seu@email.com">
+                            </div>
+                            <div>
+                                <label for="id_nome"
+                                       style="display: block;
+                                              font-size: 0.875rem;
+                                              font-weight: 500;
+                                              color: rgb(55 65 81);
+                                              margin-bottom: 0.5rem">Nome Completo *</label>
+                                <input id="id_nome"
+                                       name="nome"
+                                       type="text"
+                                       required
+                                       class="input-field"
+                                       placeholder="Seu nome completo">
+                            </div>
+                            <div>
+                                <label for="id_data_nascimento"
+                                       style="display: block;
+                                              font-size: 0.875rem;
+                                              font-weight: 500;
+                                              color: rgb(55 65 81);
+                                              margin-bottom: 0.5rem">Data de Nascimento *</label>
+                                <input id="id_data_nascimento"
+                                       name="data_nascimento"
+                                       type="date"
+                                       required
+                                       class="input-field">
+                            </div>
+                            <div>
+                                <label for="id_altura"
+                                       style="display: block;
+                                              font-size: 0.875rem;
+                                              font-weight: 500;
+                                              color: rgb(55 65 81);
+                                              margin-bottom: 0.5rem">Altura (m) *</label>
+                                <input id="id_altura"
+                                       name="altura"
+                                       type="text"
+                                       required
+                                       step="0.01"
+                                       class="input-field"
+                                       placeholder="Ex: 1.75 ou 1,75">
+                                <p style="font-size: 0.75rem;
+                                          color: rgb(107 114 128);
+                                          margin-top: 0.25rem">Use ponto ou vírgula decimal (1.75 ou 1,75)</p>
+                            </div>
+                            <div>
+                                <label for="id_password1"
+                                       style="display: block;
+                                              font-size: 0.875rem;
+                                              font-weight: 500;
+                                              color: rgb(55 65 81);
+                                              margin-bottom: 0.5rem">Senha *</label>
+                                <input id="id_password1"
+                                       name="password1"
+                                       type="password"
+                                       required
+                                       class="input-field"
+                                       placeholder="Crie uma senha segura">
+                            </div>
+                            <div>
+                                <label for="id_password2"
+                                       style="display: block;
+                                              font-size: 0.875rem;
+                                              font-weight: 500;
+                                              color: rgb(55 65 81);
+                                              margin-bottom: 0.5rem">Confirmar Senha *</label>
+                                <input id="id_password2"
+                                       name="password2"
+                                       type="password"
+                                       required
+                                       class="input-field"
+                                       placeholder="Confirme sua senha">
+                            </div>
+                            <div style="padding-top: 1rem;">
+                                <button type="submit" class="submit-btn">
+                                    <span style="position: absolute;
+                                                 left: 0;
+                                                 top: 0;
+                                                 bottom: 0;
+                                                 display: flex;
+                                                 align-items: center;
+                                                 padding-left: 0.75rem">
+                                        <svg style="height: 1.25rem;
+                                                    width: 1.25rem;
+                                                    color: rgb(187 247 208)"
+                                             fill="none"
+                                             stroke="currentColor"
+                                             viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                        </svg>
+                                    </span>
+                                    Solicitar Cadastro
+                                </button>
+                            </div>
+                            <div class="border-top" style="text-align: center;">
+                                <p style="font-size: 0.875rem; color: rgb(75 85 99);">
+                                    Já tem uma conta?
+                                    <a href="{% url 'login' %}" class="link">Faça login</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+    // Converter vírgula para ponto no campo altura
+    document.getElementById('id_altura').addEventListener('blur', function() {
+        let value = this.value;
+        if (value.includes(',')) {
+            value = value.replace(',', '.');
+            this.value = value;
+        }
+    });
+
+    // Validar formato antes do envio
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const alturaInput = document.getElementById('id_altura');
+        let value = alturaInput.value;
+        
+        // Converter vírgula para ponto se existir
+        if (value.includes(',')) {
+            value = value.replace(',', '.');
+            alturaInput.value = value;
+        }
+        
+        // Validar se é um número válido
+        const numValue = parseFloat(value);
+        if (isNaN(numValue) || numValue < 0.5 || numValue > 2.5) {
+            e.preventDefault();
+            alert('Altura deve ser um número entre 0.5 e 2.5 metros (ex: 1.75)');
+            alturaInput.focus();
+        }
+    });
+        </script>
+    </body>
+</html>
