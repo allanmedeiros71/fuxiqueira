@@ -30,7 +30,7 @@ Um sistema web responsivo para registro e acompanhamento de evolução física a
 
 1. Clone o repositório:
 ```bash
-git clone <repository-url>
+git clone https://github.com/allanmedeiros71/fuxiqueira.git
 cd fuxiqueira
 ```
 
