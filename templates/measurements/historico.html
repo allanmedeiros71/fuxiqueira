@@ -60,6 +60,7 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Metab. Basal</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Idade Metab.</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gordura Visceral</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Notas/Fotos</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
                             </tr>
                         </thead>
@@ -78,6 +79,19 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ medicao.metabolismo_basal }} kcal</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ medicao.idade_metabolica }} anos</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ medicao.indice_gordura_visceral|floatformat:1 }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                        <div class="flex items-center space-x-2">
+                                            {% if medicao.notas %}
+                                                <span title="{{ medicao.notas }}" class="cursor-help text-blue-600">📝</span>
+                                            {% endif %}
+                                            {% if medicao.foto_frente or medicao.foto_perfil or medicao.foto_costas %}
+                                                <span title="Possui fotos" class="text-green-600">📸</span>
+                                            {% endif %}
+                                            {% if not medicao.notas and not medicao.foto_frente and not medicao.foto_perfil and not medicao.foto_costas %}
+                                                <span class="text-gray-400">-</span>
+                                            {% endif %}
+                                        </div>
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                         <div class="flex space-x-2">
                                             <a href="{% url 'editar_medicao' medicao.id %}"
