@@ -67,6 +67,9 @@ def dashboard(request):
 
     # Última medição
     ultima_medicao = user.medicoes.first()
+    
+    # Primeira medição (para galeria antes/depois)
+    primeira_medicao = user.medicoes.last() if user.medicoes.count() > 1 else None
 
     # Medição anterior (para comparação)
     medicao_anterior = None
@@ -106,6 +109,7 @@ def dashboard(request):
 
     context = {
         "ultima_medicao": ultima_medicao,
+        "primeira_medicao": primeira_medicao,
         "medicao_anterior": medicao_anterior,
         "comparacoes": comparacoes,
         "chart_data": json.dumps(chart_data),

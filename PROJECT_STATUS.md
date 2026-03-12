@@ -52,11 +52,12 @@ Este documento acompanha o progresso de implementação do sistema de bioimpedâ
 - ❌ `meta_gordura` (Decimal/Float, opcional)
 
 ### 📝 Funcionalidades Adicionais
-- ❌ `notas` (Text, opcional) no Measurement
-- ❌ **Recuperação de senha**: Sistema de reset
-- ❌ **Galeria comparativa**: "Antes e Depois" no dashboard
+- ✅ `notas` (Text, opcional) no Measurement
+- ✅ **Recuperação de senha**: Sistema de reset
+- ✅ **Galeria comparativa**: "Antes e Depois" no dashboard
 
 ### ⚙️ Configurações Técnicas
+- ✅ **Mailpit**: Configuração de testes de e-mail local (Docker)
 - ❌ **MEDIA_URL/MEDIA_ROOT**: Configuração de arquivos de mídia
 - ❌ **Volume persistente**: Para imagens no Docker
 - ❌ **Compressão de imagens**: Pillow no backend
@@ -94,7 +95,7 @@ Este documento acompanha o progresso de implementação do sistema de bioimpedâ
 | `foto_frente` | ❌ **PENDENTE** | ImageField |
 | `foto_perfil` | ❌ **PENDENTE** | ImageField |
 | `foto_costas` | ❌ **PENDENTE** | ImageField |
-| `notas` | ❌ **PENDENTE** | TextField(opcional) |
+| `notas` | ✅ Implementado | TextField(opcional) |
 
 ---
 
@@ -113,18 +114,18 @@ Este documento acompanha o progresso de implementação do sistema de bioimpedâ
    - Testar captura da câmera
 
 ### 🟡 Fase 2: Melhorias (Sprint 2)
-3. **Recuperação de senha**
-   - Views de reset/redefinição
-   - Templates de email
-   - Configuração de email backend
+3. **Recuperação de senha** ✅
+   - Views de reset/redefinição ✅
+   - Templates de email ✅
+   - Configuração de email backend ✅
 
-4. **Campo de notas**
-   - Adicionar TextField ao Measurement
-   - Atualizar forms
+4. **Campo de notas** ✅
+   - Adicionar TextField ao Measurement ✅
+   - Atualizar forms ✅
 
-5. **Galeria comparativa**
-   - Exibir fotos "antes/depois"
-   - Implementar lazy loading
+5. **Galeria comparativa** ✅
+   - Exibir fotos "antes/depois" ✅
+   - Implementar lazy loading ✅
 
 ### 🟢 Fase 3: Infraestrutura (Sprint 3)
 6. **Otimização de imagens**
